@@ -1,0 +1,61 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+    "name": "RISC-V Labs",
+    "build": {
+	"dockerfile": "Dockerfile"
+    },
+
+    "containerEnv": {
+	"PATH": "/opt/riscv/riscv-gnu-toolchain/2026.02.13/bin:/opt/riscv/openocd/25.10.9/bin:/opt/riscv/qemu/v10.2.0/bin:${containerEnv:PATH}"
+    },
+
+    // Features to add to the dev container. More info: https://containers.dev/features.
+    // "features": {"golang" : "latest"},
+
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    // "forwardPorts": [],
+
+    // Use 'postCreateCommand' to run commands after the container is created.
+    // Update PATH env variable
+    "postCreateCommand": "echo 'export MODULEPATH=/opt/lmod/modulefiles' >> ~/.bashrc && echo 'source /usr/share/lmod/lmod/init/bash' >> ~/.bashrc && echo 'module load cvw/2026.02.15' >> ~/.bashrc &&  bash -c 'source ~/.bashrc'",
+
+    // Configure tool-specific properties.
+    "customizations": {
+	// Configure properties specific to VS Code.
+	"vscode": {
+	    // Set *default* container specific settings.json values on container create.
+	    // https://stackoverflow.com/questions/74645112/github-codespace-environment-setting
+	    "settings": {
+		// "workbench.colorTheme": "Monokai",
+		"debug.allowBreakpointsEverywhere": true,
+		//"cmake.useCMakePresets": "auto",
+		"makefile.configureOnOpen": true,
+		// You can also pre-configure paths inside the container
+		"cortex-debug.armToolchainPath": "/opt/riscv/riscv-gnu-toolchain/2026.02.13/bin",
+		"cortex-debug.gdbPath": "/opt/riscv/riscv-gnu-toolchain/2026.02.13/bin/riscv64-unknown-elf-gdb",
+		"cortex-debug.openocdPath": "/opt/riscv/openocd/25.10.9/bin/openocd",
+		"cortex-debug.toolchainPrefix": "riscv64-unknown-elf",
+		"cortex-debug.objdumpPath": "/opt/riscv/riscv-gnu-toolchain/2026.02.13/bin/riscv64-unknown-elf-objdump",
+		"cortex-debug.nmPath": "/opt/riscv/riscv-gnu-toolchain/2026.02.13/bin/riscv64-unknown-elf-nm"
+	    },
+	    "extensions": [
+		"webfreak.code-d",
+		"mshr-h.VerilogHDL",
+		"zhwu95.riscv",
+		"surfer-project.surfer",
+		"mcu-debug.memory-view",
+		"fredericbonnet.cmake-test-adapter",
+		"cheshirekow.cmake-format",
+		"ms-vscode.cpptools",
+		"ms-vscode.cpptools-extension-pack",
+		"ms-vscode.makefile-tools",
+		"marus25.cortex-debug",
+		"tomoki1207.pdf"
+	    ]
+	}
+    }
+
+    // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+    // "remoteUser": "root"
+}

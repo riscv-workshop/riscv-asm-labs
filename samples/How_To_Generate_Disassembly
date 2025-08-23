@@ -1,0 +1,3 @@
+riscv64-unknown-elf-objdump -D -M,no-aliases <executable> > <output file>
+Ex:
+  riscv64-unknown-elf-objdump -D -M,no-aliases pseudo_instruction_tail > tail.asm

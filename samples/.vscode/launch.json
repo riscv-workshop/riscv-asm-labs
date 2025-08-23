@@ -1,0 +1,30 @@
+{
+ // Use IntelliSense to learn about possible attributes.
+ // Hover to view descriptions of existing attributes.
+ // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+ "version": "0.2.0",
+ "configurations": [
+                    {
+                     "name": "QEMU RISC-V Debug",
+                     "type": "cortex-debug",
+                     "request": "launch",
+                     // "servertype": "external",
+                     "servertype": "qemu",
+                     "serverpath": "/opt/riscv/qemu/v10.2.0/bin/qemu-system-riscv64",
+                     // "gdbTarget": "localhost:1234",
+                     // "preLaunchTask": "Run QEMU Server",
+                     "preLaunchTask": "Build RISC-V ASM", // Links to the task above
+                     "executable": "${fileDirname}/${fileBasenameNoExtension}.elf",
+                     "cwd": "${fileDirname}",
+                     "cpu": "rv64",
+                     "machine": "virt",
+                     "serverArgs": ["-bios", "none"],
+                     "toolchainPrefix": "riscv64-unknown-elf",
+                     /* Essential for RISC-V */              
+                     "controlContext": true,
+                     "runToEntryPoint": "_start"
+                     // "postDebugTask": "Cleanup QEMU"
+                     },
+        
+                    ]
+ }

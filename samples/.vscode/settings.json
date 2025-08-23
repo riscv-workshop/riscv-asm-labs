@@ -1,0 +1,10 @@
+// https://stackoverflow.com/questions/40377654/how-to-create-and-init-vscode-in-vscode
+{
+  "terminal.integrated.env.linux": {
+    "PATH": "${env:PATH}:/opt/riscv/riscv-gnu-toolchain/2026.02.13/bin"
+  },
+ "cortex-debug.gdbPath": "/opt/riscv/riscv-gnu-toolchain/2026.02.13/bin/riscv64-unknown-elf-gdb",
+ "cortex-debug.qemuPath": "/opt/riscv/qemu/v10.2.0/bin/qemu-system-riscv64"
+ "cortex-debug.openocdPath": "/opt/riscv/openocd/25.10.9/bin/openocd",
+ "cortex-debug.variableUseNaturalFormat": true
+}

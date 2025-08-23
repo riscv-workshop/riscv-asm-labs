@@ -1,0 +1,30 @@
+{
+ // See https://go.microsoft.com/fwlink/?LinkId=733558
+ // for the documentation about the tasks.json format
+ "version": "2.0.0",
+ "tasks": [
+           {
+            "label": "Build RISC-V ASM",
+            "type": "shell",
+            "options": {
+                        "cwd": "${command:makefile.getLaunchTargetDirectory}",
+                        "env": {
+                                "PATH": "/opt/riscv/qemu/v10.2.0/bin:/opt/riscv/riscv-gnu-toolchain/2026.02.13/bin:/usr/bin"
+                                }
+                        },
+            "command": "/opt/riscv/riscv-gnu-toolchain/2026.02.13/bin/riscv64-unknown-elf-gcc",
+            "args": [
+                     "-g", "-O0", "-march=rv64i", "-mabi=lp64", "-mcmodel=medany",
+                     "-nostdlib", "-Wl,--no-relax", //  "-Wl,-Ttext=0x1000",
+                     "${file}", 
+                     "-o", "${fileDirname}/${fileBasenameNoExtension}.elf",
+                     "-T", "${workspaceFolder}/link.ld" // Optional: specify your linker script
+                     ],
+            "problemMatcher": ["$gcc"],
+            "group": {
+                      "kind": "build",
+                      "isDefault": true
+                      }
+            }
+           ]
+ }
